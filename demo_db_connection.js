@@ -1,19 +1,40 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
+const http = require('http');
 
 var con = mysql.createConnection
 ({
-	host: "192.168.137.85",
+	host: "localhost",
 	user: "root",
-	password: "moosemoose69"
+	password: "moosemoose69",
+	database: "dbw2020"
 });
 
 con.connect(function(err)
-	{
-		if(err) throw err;
-		console.log("Connected!");
-		con.query("SELECT * FROM Books", function (err, result, fields) 		{
-		if (err) throw err;
-		console.log(result);
-		});
-
+{
+	con.query("SELECT * FROM Books", (err, res, cols)=>{
+	if (err) throw err;
+	console.log(res);
 	});
+});
+
+
+
+/*
+con.connect(function(err)
+{
+	con.query("SELECT * FROM Users", (err, res, cols)=>{
+	if (err) throw err;
+	console.log(res);
+	});
+});
+
+
+
+con.connect(function(err)
+{
+	con.query("SELECT * FROM Transactions", (err, res, cols)=>{
+	if (err) throw err;
+	console.log(res);
+	});
+})
+*/
